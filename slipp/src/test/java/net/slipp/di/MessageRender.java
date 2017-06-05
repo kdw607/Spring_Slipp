@@ -2,20 +2,25 @@ package net.slipp.di;
 
 public class MessageRender {
 	
-	public void render(){
-		MessageProvider mp = new HelloWorldMessageProvider();
-		System.out.println(mp.getMessage());
+	private MessageProvider messageProvider;
+	
+	public void setMessageProvider(MessageProvider messageProvider) {
+		this.messageProvider = messageProvider;
 	}
-	/*
+	
 	public void render(){
-		MessageProvider mp = new HiWorldMessageProvider();
-		System.out.println(mp.getMessage());
+		System.out.println(messageProvider.getMessage());
 	}
-	 */
 	
 	public static void main(String[] args) {
 		MessageRender render = new MessageRender();
+		render.setMessageProvider(new HelloWorldMessageProvider());
 		render.render();
+		
+
+		render.setMessageProvider(new HiWorldMessageProvider());
+		render.render();		 
+		
 	}
 	
 }
