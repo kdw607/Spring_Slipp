@@ -1,5 +1,8 @@
 package net.slipp.di;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
 public class MessageRender {
 	
 	private MessageProvider messageProvider;
@@ -13,13 +16,10 @@ public class MessageRender {
 	}
 	
 	public static void main(String[] args) {
-		MessageRender render = new MessageRender();
-		render.setMessageProvider(new HelloWorldMessageProvider());
-		render.render();
-		
 
-		render.setMessageProvider(new HiWorldMessageProvider());
-		render.render();		 
+		ApplicationContext ctx = new ClassPathXmlApplicationContext("di.xml");
+		MessageRender render = (MessageRender)ctx.getBean("messageRender");
+		render.render();
 		
 	}
 	
